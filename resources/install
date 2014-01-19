@@ -1,0 +1,18 @@
+#!/bin/bash
+
+cd /root
+unzip All-In-One-SpagoBI-4.1_16122013.zip
+unzip postgres-dbscript-4.1.0.zip
+
+rm -f /root/All-In-One-SpagoBI-4.1_16122013.zip /root/postgres-dbscript-4.1.0.zip
+cd SpagoBI-Server-4.1-16122013/
+
+chmod a+x ./bin/*.sh
+chmod a+x ./database/*.sh
+
+
+### Fix UTF8 issue http://www.spagoworld.org/jforum/posts/list/695.page
+find \( -iname "*.js" -o -iname "*.xml" -o -iname "*.jsp" \) | xargs sed -i 's/ISO-8859-15/UTF-8/g'
+find \( -iname "*.js" -o -iname "*.xml" -o -iname "*.jsp" \) | xargs sed -i 's/ISO-8859-1/UTF-8/g'
+
+exit 0
