@@ -1,3 +1,0 @@
-#!/bin/bash
-cd /root/SpagoBI-Server-4.1-16122013/bin/
-exec /root/SpagoBI-Server-4.1-16122013/bin/startup.sh

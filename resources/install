@@ -1,18 +1,38 @@
 #!/bin/bash
 
-cd /root
-unzip All-In-One-SpagoBI-4.1_16122013.zip
-unzip postgres-dbscript-4.1.0.zip
+unzip /SpagoBI-bin-4.1.0_01122013.zip -d /SpagoBI-bin
+unzip /SpagoBIBirtReportEngine-bin-4.1.0_01122013.zip -d /SpagoBIBirtReportEngine
+unzip /SpagoBIConsoleEngine-bin-4.1.0_01122013.zip -d /SpagoBIConsoleEngine
+unzip /SpagoBIMobileEngine-bin-4.1.0_01122013.zip -d /SpagoBIMobileEngine
 
-rm -f /root/All-In-One-SpagoBI-4.1_16122013.zip /root/postgres-dbscript-4.1.0.zip
-cd SpagoBI-Server-4.1-16122013/
+mv /SpagoBI-bin/SpagoBI.war /usr/share/tomcat/webapps/SpagoBI.war
+mv /SpagoBIBirtReportEngine/SpagoBIBirtReportEngine.war /usr/share/tomcat/webapps/SpagoBIBirtReportEngine.war
+mv /SpagoBIConsoleEngine/SpagoBIConsoleEngine.war /usr/share/tomcat/webapps/SpagoBIConsoleEngine.war
+mv /SpagoBIMobileEngine/SpagoBIMobileEngine.war /usr/share/tomcat/webapps/SpagoBIMobileEngine.war
+rm -Rf /SpagoBI*
 
-chmod a+x ./bin/*.sh
-chmod a+x ./database/*.sh
 
 
-### Fix UTF8 issue http://www.spagoworld.org/jforum/posts/list/695.page
+
+/usr/share/tomcat/bin/startup.sh
+ps aux
+sleep 30
+ps aux
+
+ls /usr/share/tomcat/webapps/
+cd /usr/share/tomcat/webapps/SpagoBI
+
 find \( -iname "*.js" -o -iname "*.xml" -o -iname "*.jsp" \) | xargs sed -i 's/ISO-8859-15/UTF-8/g'
 find \( -iname "*.js" -o -iname "*.xml" -o -iname "*.jsp" \) | xargs sed -i 's/ISO-8859-1/UTF-8/g'
+
+sed 's/MySQLDialect/PostgreSQLDialect/' -i /usr/share/tomcat/webapps/SpagoBI/WEB-INF/classes/hibernate.cfg.xml
+sed 's/MySQLDialect/PostgreSQLDialect/' -i /usr/share/tomcat/webapps/SpagoBI/WEB-INF/classes/jbpm.hibernate.cfg.xml
+
+sed 's/StdJDBCDelegate/PostgreSQLDelegate/' -i /usr/share/tomcat/webapps/SpagoBI/WEB-INF/classes/quartz.properties
+
+rm /usr/share/tomcat/webapps/SpagoBI.war
+rm /usr/share/tomcat/webapps/SpagoBIBirtReportEngine.war
+rm /usr/share/tomcat/webapps/SpagoBIConsoleEngine.war
+rm /usr/share/tomcat/webapps/SpagoBIMobileEngine.war
 
 exit 0
