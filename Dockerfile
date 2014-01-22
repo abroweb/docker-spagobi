@@ -34,8 +34,8 @@ ADD ./resources/conf/server.xml /usr/share/tomcat/conf/server.xml
 ADD http://jdbc.postgresql.org/download/postgresql-9.1-903.jdbc4.jar /usr/share/tomcat/lib/postgresql-9.1-903.jdbc4.jar
 
 
-#ADD ./resources/install /root/install
-#RUN chmod 755 /root/install && /root/install
+ADD ./resources/install /root/install
+RUN chmod 755 /root/install && /root/install
 
 CMD /usr/share/tomcat/bin/startup.sh && tail -F /usr/share/tomcat/logs/catalina.out
 
