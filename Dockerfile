@@ -42,6 +42,8 @@ ADD ./resources/conf/SpagoBIBirtReportEngine/web.xml /usr/share/tomcat/webapps/S
 ADD ./resources/conf/SpagoBIConsoleEngine/web.xml /usr/share/tomcat/webapps/SpagoBIConsoleEngine/WEB-INF/web.xml
 ADD ./resources/conf/SpagoBIMobileEngine/web.xml /usr/share/tomcat/webapps/SpagoBIMobileEngine/WEB-INF/web.xml
 
+ADD ./resources/SpagobiFilter.jar /usr/share/tomcat/lib/SpagobiFilter.jar
+
 CMD /usr/share/tomcat/bin/startup.sh && tail -F /usr/share/tomcat/logs/catalina.out
 
 EXPOSE 8080

@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 unzip /SpagoBI-bin-4.1.0_01122013.zip -d /SpagoBI-bin
 unzip /SpagoBIBirtReportEngine-bin-4.1.0_01122013.zip -d /SpagoBIBirtReportEngine
 unzip /SpagoBIConsoleEngine-bin-4.1.0_01122013.zip -d /SpagoBIConsoleEngine
