@@ -4,7 +4,14 @@
     <description>
         This application is a portlet. It can not be used outside a portal.
 	</description>
-
+    <filter>
+   	    <filter-name>utf8Filter</filter-name>
+   	    <filter-class>ru.abro.spagobi.commons.filters.CharsetFilter</filter-class>
+   	</filter>
+           <filter-mapping>
+                   <filter-name>utf8Filter</filter-name>
+                   <url-pattern>/servlet/AdapterHTTP/*</url-pattern>
+           </filter-mapping>
 	<filter>
 		<filter-name>SpagoBICoreCheckSessionFilter</filter-name>
 		<filter-class>it.eng.spagobi.commons.filters.SpagoBICoreCheckSessionFilter</filter-class>

@@ -6,6 +6,14 @@
 	<description>
 		Spago BI - SpagoBIConsoleEngine Web Version
 	</description>
+    <filter>
+   	    <filter-name>utf8Filter</filter-name>
+   	    <filter-class>ru.abro.spagobi.commons.filters.CharsetFilter</filter-class>
+   	</filter>
+           <filter-mapping>
+                   <filter-name>utf8Filter</filter-name>
+                   <url-pattern>/servlet/AdapterHTTP/*</url-pattern>
+           </filter-mapping>
 	<filter>
 		<filter-name>EngineCheckSessionFilter</filter-name>
 		<filter-class>it.eng.spagobi.utilities.filters.EngineCheckSessionFilter</filter-class>

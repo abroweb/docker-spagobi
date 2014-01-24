@@ -37,6 +37,11 @@ ADD http://jdbc.postgresql.org/download/postgresql-9.1-903.jdbc4.jar /usr/share/
 ADD ./resources/install /root/install
 RUN chmod 755 /root/install && /root/install
 
+ADD ./resources/conf/SpagoBI/web.xml /usr/share/tomcat/webapps/SpagoBI/WEB-INF/web.xml
+ADD ./resources/conf/SpagoBIBirtReportEngine/web.xml /usr/share/tomcat/webapps/SpagoBIBirtReportEngine/WEB-INF/web.xml
+ADD ./resources/conf/SpagoBIConsoleEngine/web.xml /usr/share/tomcat/webapps/SpagoBIConsoleEngine/WEB-INF/web.xml
+ADD ./resources/conf/SpagoBIMobileEngine/web.xml /usr/share/tomcat/webapps/SpagoBIMobileEngine/WEB-INF/web.xml
+
 CMD /usr/share/tomcat/bin/startup.sh && tail -F /usr/share/tomcat/logs/catalina.out
 
 EXPOSE 8080
